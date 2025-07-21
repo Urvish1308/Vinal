@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For My Love, Vinal 💖</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;  
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to top left, #ffb6c1, #ff69b4, #fff0f5);
+      color: #fff;
+      text-align: center;
+    }
+
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top, #ffafcc 0%, #ff5c8a 100%);
+      animation: pulse 10s infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes pulse {
+      0% { filter: brightness(1); }
+      100% { filter: brightness(1.2); }
+    }
+
+    .content {
+      padding: 60px 20px;
+      transition: opacity 1s ease;
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .fade-in.delay-1 { animation-delay: 1s; }
+    .fade-in.delay-2 { animation-delay: 2s; }
+    .fade-in.delay-3 { animation-delay: 3s; }
+    .fade-in.delay-4 { animation-delay: 4s; }
+    .fade-in.delay-5 { animation-delay: 5s; }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      font-size: 1.4em;
+      margin: 20px auto;
+      max-width: 700px;
+    }
+
+    .photo {
+      display: block;
+      margin: 30px auto;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 0 30px #fff;
+    }
+
+    .button {
+      background: white;
+      color: #e91e63;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 30px;
+      margin-top: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    #hearts {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      transform: rotate(45deg);
+      animation: rise 5s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -15px;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    @keyframes zoomInCenter {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .final-message {
+  display: none;
+  font-size: 2em;
+  color: #fff;
+  animation: zoomInCenter 1.5s ease forwards;
+  text-shadow: 2px 2px 8px #e91e63;
+  z-index: 20;
+  max-width: 90%;
+  text-align: center;
+  padding: 20px;
+}
+
+
+    footer {
+      margin-top: 50px;
+      font-size: 1em;
+      color: #fff;
+      opacity: 0.8;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+
+  <div class="content" id="mainContent">
+    <h1 class="fade-in delay-1">💖 Vinal, My Forever Love 💖</h1>
+
+    <p class="message fade-in delay-2">
+      Vinal, thank you — truly — for choosing me, for trusting me, and for allowing me into your beautiful life.<br>
+      Since the moment you came into my world, everything feels lighter, brighter, and more meaningful.<br>
+      You bring joy to my days, peace to my heart, and purpose to my soul.
+    </p>
+
+    <p class="message fade-in delay-3">
+      I promise you this: you will never have to doubt your decision.<br>
+      I will spend every day making you feel cherished, protected, and deeply loved.<br>
+      Your smile is my happiness — and I will do everything to keep it glowing.
+    </p>
+
+    <p class="message fade-in delay-4">
+      So today, with all my heart, I ask you: <br>
+      Will you walk this life with me, not just as my love, but as my forever... my fiancée? 💍
+    </p>
+
+    <img src="vinal.jpeg" alt="Vinal & Me" class="photo fade-in delay-5">
+
+    <button class="button fade-in delay-5" onclick="showHeartsAndMessage()">YES, I LOVE YOU ❤️</button>
+
+    <div id="hearts"></div>
+  </div>
+
+  <div class="final-message" id="finalMessage">
+    <img src="vinal.jpeg" alt="Vinal & Me" class="photo">
+    I love you always.<br>
+    I'm so excited to see you this Saturday<br>
+    and spend every moment with you 💖
+  </div>
+
+  <footer class="fade-in delay-5">
+    Made with all my love, just for you — Urvish 💗
+  </footer>
+
+  <script>
+    function showHeartsAndMessage() {
+      const container = document.getElementById("hearts");
+      const main = document.getElementById("mainContent");
+      const finalMsg = document.getElementById("finalMessage");
+
+      // Floating hearts
+      for (let i = 0; i < 50; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+        container.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+
+      // Fade out main content
+      main.style.animation = "fadeOut 1s forwards";
+
+      // Show final message after fade
+      setTimeout(() => {
+        main.style.display = "none";
+        finalMsg.style.display = "block";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
