@@ -159,17 +159,16 @@
     }
 
     .final-message {
-  display: none;
-  font-size: 2em;
-  color: #fff;
-  animation: zoomInCenter 1.5s ease forwards;
-  text-shadow: 2px 2px 8px #e91e63;
-  z-index: 20;
-  max-width: 90%;
-  text-align: center;
-  padding: 20px;
-}
-
+      display: none;
+      font-size: 2em;
+      color: #fff;
+      animation: zoomInCenter 1.5s ease forwards;
+      text-shadow: 2px 2px 8px #e91e63;
+      z-index: 20;
+      max-width: 90%;
+      text-align: center;
+      padding: 20px;
+    }
 
     footer {
       margin-top: 50px;
@@ -177,16 +176,13 @@
       color: #fff;
       opacity: 0.8;
     }
-
-
-
   </style>
 </head>
 <body>
   <div class="background"></div>
 
   <div class="content" id="mainContent">
-    <h1 class="fade-in delay-1">💖 Vinal, My Forever Love 💖</h1>
+    <h1 class="fade-in delay-1">💖 Happy Birthday My Love, Vinal 💖</h1>
 
     <p class="message fade-in delay-2">
       Vinal, thank you — truly — for choosing me, for trusting me, and for allowing me into your beautiful life.<br>
@@ -201,27 +197,33 @@
     </p>
 
     <p class="message fade-in delay-4">
-      So today, with all my heart, I ask you: <br>
-      Will you walk this life with me, not just as my love, but as my forever... my fiancée? 💍
+      So today, with all my heart, I say again:<br>
+      You are my forever, my reason, my love. 💍<br>
+      And now — my Birthday Queen! 👑
     </p>
 
     <img src="vinal.jpeg" alt="Vinal & Me" class="photo fade-in delay-5">
 
-    <button class="button fade-in delay-5" onclick="showHeartsAndMessage()">YES, I LOVE YOU ❤️</button>
+    <button class="button fade-in delay-5" onclick="showHeartsAndMessage()">❤️ Tap for a Surprise ❤️</button>
 
     <div id="hearts"></div>
   </div>
 
   <div class="final-message" id="finalMessage">
     <img src="vinal.jpeg" alt="Vinal & Me" class="photo">
-    I love you always.<br>
-    I'm so excited to see you this Saturday<br>
-    and spend every moment with you 💖
+    Happy Birthday again, my love! 🎂💖<br>
+    I love you endlessly — and I can’t wait to celebrate together soon 💕
   </div>
 
   <footer class="fade-in delay-5">
     Made with all my love, just for you — Urvish 💗
   </footer>
+
+  <!-- 🎵 Background Birthday Song -->
+  <audio id="birthdaySong" autoplay loop>
+    <source src="song.mpeg" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     function showHeartsAndMessage() {
@@ -229,27 +231,29 @@
       const main = document.getElementById("mainContent");
       const finalMsg = document.getElementById("finalMessage");
 
-      // Floating hearts
+      // Floating hearts animation
       for (let i = 0; i < 50; i++) {
         const heart = document.createElement("div");
         heart.classList.add("heart");
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.animationDuration = 2 + Math.random() * 3 + "s";
         container.appendChild(heart);
-        setTimeout(() => {
-          heart.remove();
-        }, 5000);
+        setTimeout(() => heart.remove(), 5000);
       }
 
-      // Fade out main content
+      // Fade out main section and show final message
       main.style.animation = "fadeOut 1s forwards";
-
-      // Show final message after fade
       setTimeout(() => {
         main.style.display = "none";
         finalMsg.style.display = "block";
       }, 1000);
     }
+
+    // Auto play the birthday song when the site loads or refreshes
+    window.onload = () => {
+      const song = document.getElementById("birthdaySong");
+      song.play().catch(err => console.log("Autoplay blocked:", err));
+    };
   </script>
 </body>
 </html>
