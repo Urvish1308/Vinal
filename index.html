@@ -33,6 +33,7 @@
     .content {
       padding: 60px 20px;
       transition: opacity 1s ease;
+      display: none; /* hidden until play button pressed */
     }
 
     .fade-in {
@@ -113,50 +114,17 @@
       border-radius: 50%;
     }
 
-    .heart::before {
-      top: -15px;
-      left: 0;
-    }
-
-    .heart::after {
-      top: 0;
-      left: -15px;
-    }
+    .heart::before { top: -15px; left: 0; }
+    .heart::after { top: 0; left: -15px; }
 
     @keyframes rise {
-      0% {
-        transform: translateY(0) rotate(45deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(45deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-    }
-
-    @keyframes zoomInCenter {
-      0% {
-        transform: scale(0.7);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; transform: scale(0.95); } }
+    @keyframes zoomInCenter { 0% { transform: scale(0.7); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
     .final-message {
       display: none;
@@ -170,16 +138,32 @@
       padding: 20px;
     }
 
-    footer {
-      margin-top: 50px;
-      font-size: 1em;
-      color: #fff;
-      opacity: 0.8;
+    footer { margin-top: 50px; font-size: 1em; color: #fff; opacity: 0.8; }
+
+    #playOverlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
     }
+
+    #playOverlay p { margin: 0 20px; text-align: center; font-size: 1.5em; }
   </style>
 </head>
 <body>
   <div class="background"></div>
+
+  <!-- Overlay asking user to play audio -->
+  <div id="playOverlay">
+    <p>🎵 Tap here to start your Birthday Surprise for Vinal! 🎵</p>
+  </div>
 
   <div class="content" id="mainContent">
     <h1 class="fade-in delay-1">💖 Happy Birthday My Love, Vinal 💖</h1>
@@ -219,19 +203,27 @@
     Made with all my love, just for you — Urvish 💗
   </footer>
 
-  <!-- 🎵 Background Birthday Song -->
-  <audio id="birthdaySong" autoplay loop>
+  <!-- Birthday song -->
+  <audio id="birthdaySong" loop>
     <source src="song.mpeg" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <script>
+    const overlay = document.getElementById("playOverlay");
+    const song = document.getElementById("birthdaySong");
+    const main = document.getElementById("mainContent");
+
+    // Start music & show main content after tap
+    overlay.addEventListener("click", () => {
+      song.play().catch(err => console.log("Play blocked:", err));
+      overlay.style.display = "none";
+      main.style.display = "block";
+    });
+
     function showHeartsAndMessage() {
       const container = document.getElementById("hearts");
-      const main = document.getElementById("mainContent");
       const finalMsg = document.getElementById("finalMessage");
 
-      // Floating hearts animation
       for (let i = 0; i < 50; i++) {
         const heart = document.createElement("div");
         heart.classList.add("heart");
@@ -241,19 +233,12 @@
         setTimeout(() => heart.remove(), 5000);
       }
 
-      // Fade out main section and show final message
       main.style.animation = "fadeOut 1s forwards";
       setTimeout(() => {
         main.style.display = "none";
         finalMsg.style.display = "block";
       }, 1000);
     }
-
-    // Auto play the birthday song when the site loads or refreshes
-    window.onload = () => {
-      const song = document.getElementById("birthdaySong");
-      song.play().catch(err => console.log("Autoplay blocked:", err));
-    };
   </script>
 </body>
 </html>
